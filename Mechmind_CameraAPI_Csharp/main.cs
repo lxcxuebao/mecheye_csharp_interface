@@ -13,7 +13,7 @@ namespace Mechmind_CameraAPI_Csharp
             CameraClient camera = new CameraClient();
             //camera ip should be modified to actual ip address
             //always set ip before do anything else
-            camera.setIp("192.168.3.146");
+            camera.connect("192.168.3.146");
             //get some camera info like intrincis, ip, id and version
             double[] intri = camera.getCameraIntri(); //[fx,fy,u,v]
        

@@ -56,7 +56,7 @@ namespace Mechmind_CameraAPI_Csharp
         const int CaptureGratingImage = 8;
         public CameraClient() : base()
         { }
-        public int setIp(string ip)
+        public int connect(string ip)
         {
             return setAddr(ip);
         }
