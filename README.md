@@ -1,5 +1,5 @@
 # Mech-Eye_Csharp_interface
-# Mech-Eye_python_interface
+
 
 This is official C# interface for Mech-Eye cameras. 
 
