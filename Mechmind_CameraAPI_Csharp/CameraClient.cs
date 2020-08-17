@@ -1,18 +1,10 @@
 ﻿using Mmind;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
-using System.Net.NetworkInformation;
 using System.Text;
-using System.Text.RegularExpressions;
 using OpenCvSharp;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 using Google.Protobuf;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Numerics;
+
 
 namespace Mechmind_CameraAPI_Csharp
 {
@@ -126,10 +118,6 @@ namespace Mechmind_CameraAPI_Csharp
                 double.Parse(intrivalue_str[3])
                 );
             double[] rel = intri.getValue();
-            //Console.WriteLine("fx = " + rel[0].ToString());
-            //Console.WriteLine("fy = " + rel[1].ToString());
-            //Console.WriteLine("u = " + rel[2].ToString());
-            //Console.WriteLine("v = " + rel[3].ToString());
             return rel;
         }
         public Mat captureColorImg()

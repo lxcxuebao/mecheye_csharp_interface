@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using OpenCvSharp;
-using OpenCvSharp.Flann;
+
 
 namespace Mechmind_CameraAPI_Csharp
 {
