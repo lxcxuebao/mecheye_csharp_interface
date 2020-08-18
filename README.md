@@ -14,6 +14,11 @@ By using this api, you can easily control your mech_eye cameras in .Net programs
 
 ## Dependency
 
+These environments are needed :
+
+* Visual Studio (2019 is recommanded)
+* .Net
+
 These packages are needed:
 
 * Google.Protobuf
@@ -23,10 +28,23 @@ These packages are needed:
 
 All these you can install with Nuget.
 
-## Usage
+### Installation
 
-Just clone this project and open the sln file with Visual Studio(VS2019 is recommanded).
+1. We recommand VS 2019 to compiler the project. Make sure .Net is also installed.
 
-If there are missing dependencies, you can easily install them with Nuget.
+   If not, you can open VS and then go to: Tools ->Get Tools and features and then, in Wordloads tag, choose ".Net Desktop Development" and install it.
 
-Build and run, main.cs is an sample to show you how to use API.
+2. Clone the repo and open .sln file with VS.
+
+3. Right CIick on the "Mechmind_cameraAPI_Csharp" and click "Manage Nuget packages".
+
+4. Then Click the "Browse" tag and search "Google.Protobuf" and install it.
+
+   The 3 other packages can also be installed in this way.
+
+## Quick Start
+
+After finish installation above, click the Debug->start debugging.
+
+The sample.cs will be compiled and run. 
+
