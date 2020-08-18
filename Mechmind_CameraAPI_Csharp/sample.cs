@@ -11,15 +11,8 @@ namespace Mechmind_CameraAPI_Csharp
             CameraClient camera = new CameraClient();
             //camera ip should be modified to actual ip address
             //always set ip before do anything else
-            try
-            {
-                camera.connect("192.168.3.76");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Cannot connect to camera.Check the ip address!");
-                System.Environment.Exit(0);
-            }
+            camera.connect("192.168.3.76");
+ 
             //get some camera info like intrincis, ip, id and version
             double[] intri = camera.getCameraIntri(); //[fx,fy,u,v]
        

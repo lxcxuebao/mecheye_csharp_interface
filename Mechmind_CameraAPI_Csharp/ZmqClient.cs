@@ -43,13 +43,23 @@ namespace Mechmind_CameraAPI_Csharp
             return addr.Length == 0;
         }
         public Mmind.Response sendReq(Mmind.Request req)
-        {        
-            reqbuf = new byte[req.CalculateSize()];
-            Serialize(reqbuf, req);
-            client.SendFrame(reqbuf);
-            resbuf = client.ReceiveFrameBytes();
-            Mmind.Response rel = Mmind.Response.Parser.ParseFrom(resbuf);
-            return rel;
+        {
+            Mmind.Response rel;
+            try
+            {
+                reqbuf = new byte[req.CalculateSize()];
+                Serialize(reqbuf, req);
+                client.SendFrame(reqbuf);
+                resbuf = client.ReceiveFrameBytes();
+                rel = Mmind.Response.Parser.ParseFrom(resbuf);
+                return rel;
+            }  
+            catch (Exception e)
+            {
+                Console.WriteLine("Network Error. Please check your ip address and network connection!");
+                System.Environment.Exit(0);
+            }
+            return null;
         }
         private void Serialize(byte[] data, Mmind.Request person)
         {

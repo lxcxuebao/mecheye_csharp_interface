@@ -48,3 +48,102 @@ After finish installation above, click the Debug->start debugging.
 
 The sample.cs will be compiled and run. 
 
+## Project hierarchy
+
+The following shows the hierarchy of project files.
+
+```
+Mech-Eye_Csharp_interface
+├─ Mechmind_CameraAPI_Csharp
+│    ├─ CameraClient.cs
+│    ├─ Mechmind_CameraAPI_Csharp.csproj
+│    ├─ ZmqClient.cs
+│    ├─ protobuf_generate
+│    │    ├─ CameraStatus.cs
+│    │    └─ Image.cs
+│    └─ sample.cs
+├─ Mechmind_CameraAPI_Csharp.sln
+└─ README.md
+```
+
+**Mechmind_CameraAPI_Csharp**  folder contains all codes. **CameraClient.cs** and **ZmqClient.cs** contains essential codes of interfaces. 
+
+In **protobuf_generate**, two files define data structure of communication over networks.
+
+**sample.cs** provides a simple example to show how to use APIs.
+
+## Brief Intro to interfaces
+
+All you interfaces and functions are in  **CameraClient.cpp**.
+
+There are two main classes: CameraClient and ZmqClient. CameraClient is subclass of ZmqClient. You only need to focus on CameraClient.
+
+* **CameraClient**
+
+  * **connect()** : connect to the camera according to its ip address.
+  * **captureDepthImg()** : capture a depth image and return it.
+  * **captureColorImg()** : capture a color image and return it.
+  * **getCameraIntri()**: get camera's intrinsics.
+  * **getCameraIp()**: get camera's ip address.
+  * **getCameraVersion()**: get camera's version number.
+  * **getParameter()** : get the value of a spefic parameter in camera.
+  * **setParameter()** : set the value of a spefic parameter in camera.
+  * **captureRgbCloud()** : get a point cloud as pcl::PointXYZRGB
+
+
+### Intro to samples
+
+The original project provides a sample to show how to use APIs.
+
+##### sample.cs
+
+This sample mainly shows how to set camera's paramters like exporeture time.
+
+First, we need to know the actual ip address of camera and set it, and then connect to it:
+
+```c#
+CameraClient camera = new CameraClient();
+//camera ip should be modified to actual ip address
+//always set ip before do anything else
+camera.connect("192.168.3.76");
+```
+
+Then, we can get some brief info about camera:
+
+```c#
+Console.WriteLine("Camera IP: " + camera.getCameraIp());
+Console.WriteLine("Camera ID: " + camera.getCameraId());
+Console.WriteLine("Version: " + camera.getCameraVersion());
+```
+
+Finally, we can set and get the value of a specific parameter, in this case, we choose exposure time for color image:
+
+```c#
+Console.WriteLine(camera.setParameter("camera2DExpTime", 15));
+Console.WriteLine(camera.getParameter("camera2DExpTime"));
+Console.WriteLine(camera.setParameter("camera2DExpTime", 20));
+Console.WriteLine(camera.getParameter("camera2DExpTime"));
+
+```
+
+The program can capture color images and depth images by camera. And also point clouds as a double array:
+
+```c#
+string save_path = "D:\\";
+//capture color image and depth image and save them
+Mat color = camera.captureColorImg();
+Mat depth = camera.captureDepthImg();
+
+if (color.Empty() || depth.Empty())
+{
+Console.WriteLine("Empty images");
+}
+else
+{
+Cv2.ImWrite(save_path + "color.jpg", color);
+Cv2.ImWrite(save_path + "depth.png", depth);
+}
+double[,] rel = camera.captureRGBCloud();//point cloud data in xyzrgb3
+
+```
+
