@@ -10,7 +10,7 @@ By using interfaces , you can easily control your mech_eye cameras in .Net progr
 * Connect to your cameras in your LANS.
 * Set and get camera parameters like exposure time, period and so on.
 * Get color image and depth image as matrix.
-* Get point cloud data in the format of a 2-dim array.
+* Get point cloud data in the format of a two-dimensional array.
 
 ## Dependency
 
@@ -44,7 +44,9 @@ All these you can install with Nuget.
 
 ## Quick Start
 
-After finish installation above, press Ctrl+F5 to run.
+After finish installation above, open code file **sample.cs** and modify the IP address in line 14 to your actual camera address.
+
+Press Ctrl+F5 to run.
 
 The sample.cs will be compiled and run. 
 
@@ -92,9 +94,9 @@ There are two main classes: CameraClient and ZmqClient. CameraClient is subclass
 
   * **getCameraVersion()**: get camera's version number.
 
-  * **getParameter()** : get the value of a spefic parameter in camera.
+  * **getParameter()** : get the value of a specific parameter in camera.
 
-  * **setParameter()** : set the value of a spefic parameter in camera.
+  * **setParameter()** : set the value of a specific parameter in camera.
 
     **Note**：Some parameters cannot be set in this version, they are available in next version. But they can still be set in Mech_eye. Here are all parameters can be set now(You can check them in Mech_eye software):
 
@@ -177,7 +179,7 @@ else
 Cv2.ImWrite(save_path + "color.jpg", color);
 Cv2.ImWrite(save_path + "depth.png", depth);
 }
-double[,] rel = camera.captureRGBCloud();//point cloud data in xyzrgb
+double[,] rel = camera.captureRGBCloud();//point cloud data in xyzbgr
 
 ```
 
