@@ -82,7 +82,7 @@ There are two main classes: CameraClient and ZmqClient. CameraClient is subclass
 
 * **CameraClient**
 
-  * **connect()** : connect to the camera according to its ip address.
+  * **connect()** : connect to the camera according to its IP address.
 
   * **captureDepthImg()** : capture a depth image and return it.
 
