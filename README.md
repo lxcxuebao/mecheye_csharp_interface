@@ -88,7 +88,7 @@ There are two main classes: CameraClient and ZmqClient. CameraClient is subclass
 
   * **captureColorImg()** : capture a color image and return it.
 
-  * **getCameraIntri()**: get camera's intrinsics.
+  * **getCameraIntri()**: get camera's intrinsic parameters.
 
   * **getCameraIp()**: get camera's ip address.
 
@@ -162,7 +162,7 @@ Console.WriteLine(camera.getParameter("camera2DExpTime"));
 
 ```
 
-The program can capture color images and depth images by camera. And also point clouds as a double array:
+The program can capture color images and depth images by camera. And also point clouds will be captured as a double array:
 
 ```c#
 string save_path = "D:\\";
