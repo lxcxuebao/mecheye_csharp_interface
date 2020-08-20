@@ -1,15 +1,15 @@
 # Mech-Eye_Csharp_interface
 
 
-This is official C# interface for Mech-Eye cameras. 
+This is official C# interfaces for Mech-Eye cameras. 
 
-## Features 
+## Features
 
-By using this api, you can easily control your mech_eye cameras in .Net programs. The features of this API are as follows:
+By using interfaces , you can easily control your mech_eye cameras in .Net programs. The features of interfaces are as follows:
 
-* Connect to your camera in your LANS.
-* Set and get cameras parameters like exposure time, period and so on.
-* Get color image and depth image as a numpy array.
+* Connect to your cameras in your LANS.
+* Set and get camera parameters like exposure time, period and so on.
+* Get color image and depth image as matrix.
 * Get point cloud data in the format of a 2-dim array.
 
 ## Dependency
@@ -17,7 +17,7 @@ By using this api, you can easily control your mech_eye cameras in .Net programs
 These environments are needed :
 
 * Visual Studio (2019 is recommanded)
-* .Net
+* .Net Core (Version 3.1 is recommanded)
 
 These packages are needed:
 
@@ -30,13 +30,13 @@ All these you can install with Nuget.
 
 ### Installation
 
-1. We recommand VS 2019 to compiler the project. Make sure .Net is also installed.
+1. We recommand VS 2019 to compile the project. Make sure .Net is also installed.
 
-   If not, you can open VS and then go to: Tools ->Get Tools and features and then, in Wordloads tag, choose ".Net Desktop Development" and install it.
+   If not, you can open VS and then go to: Tools ->Get Tools and features and then, in Workloads tag, choose ".Net Desktop Development" and install it.
 
 2. Clone the repo and open .sln file with VS.
 
-3. Right CIick on the "Mechmind_cameraAPI_Csharp" and click "Manage Nuget packages".
+3. Right CIick on the "Mechmind_cameraAPI_Csharp" solution and click "Manage Nuget packages".
 
 4. Then Click the "Browse" tag and search "Google.Protobuf" and install it.
 
@@ -44,7 +44,7 @@ All these you can install with Nuget.
 
 ## Quick Start
 
-After finish installation above, click the Debug->start debugging.
+After finish installation above, press Ctrl+F5 to run.
 
 The sample.cs will be compiled and run. 
 
@@ -66,40 +66,74 @@ Mech-Eye_Csharp_interface
 └─ README.md
 ```
 
-**Mechmind_CameraAPI_Csharp**  folder contains all codes. **CameraClient.cs** and **ZmqClient.cs** contains essential codes of interfaces. 
+**Mechmind_CameraAPI_Csharp**  folder contains all code. **CameraClient.cs** and **ZmqClient.cs** contains essential code of interfaces. 
 
 In **protobuf_generate**, two files define data structure of communication over networks.
 
-**sample.cs** provides a simple example to show how to use APIs.
+**sample.cs** provides a simple example to show the usage of interfaces.
 
 ## Brief Intro to interfaces
 
-All you interfaces and functions are in  **CameraClient.cpp**.
+All interfaces and functions are in  **CameraClient.cpp**.
 
 There are two main classes: CameraClient and ZmqClient. CameraClient is subclass of ZmqClient. You only need to focus on CameraClient.
 
 * **CameraClient**
 
   * **connect()** : connect to the camera according to its ip address.
+
   * **captureDepthImg()** : capture a depth image and return it.
+
   * **captureColorImg()** : capture a color image and return it.
+
   * **getCameraIntri()**: get camera's intrinsics.
+
   * **getCameraIp()**: get camera's ip address.
+
   * **getCameraVersion()**: get camera's version number.
+
   * **getParameter()** : get the value of a spefic parameter in camera.
+
   * **setParameter()** : set the value of a spefic parameter in camera.
-  * **captureRgbCloud()** : get a point cloud as pcl::PointXYZRGB
+
+    **Note**：Some parameters cannot be set in this version, they are available in next version. But they can still be set in Mech_eye. Here are all parameters can be set now(You can check them in Mech_eye software):
+
+    * **Projection** part:
+      * period
+      * isNanoType
+      * syncExposure
+    * **3D scaning** part:
+      * exposure1
+      * exposure2
+      * exposure3
+      * gain
+      * useBinning
+      * useColorHdr
+    * **2D scaning** part:
+      * camera2DExpTime
+      * expectedGrayValue
+      * sharpenfactor
+    * **filter** part:
+      * contrastThres
+      * strength
+      * useMedianBlur
+      * hasThinObject
+    * **depth limit** part:
+      * lowerLimit
+      * upperLimit
+
+  * **captureRgbCloud()** : get a point cloud as a double array.
 
 
 ### Intro to samples
 
-The original project provides a sample to show how to use APIs.
+The original project provides a sample to show how to use interfaces.
 
 ##### sample.cs
 
 This sample mainly shows how to set camera's paramters like exporeture time.
 
-First, we need to know the actual ip address of camera and set it, and then connect to it:
+First, we need to know the actual ip address of camera and set it, and then connect:
 
 ```c#
 CameraClient camera = new CameraClient();
@@ -143,7 +177,7 @@ else
 Cv2.ImWrite(save_path + "color.jpg", color);
 Cv2.ImWrite(save_path + "depth.png", depth);
 }
-double[,] rel = camera.captureRGBCloud();//point cloud data in xyzrgb3
+double[,] rel = camera.captureRGBCloud();//point cloud data in xyzrgb
 
 ```
 
