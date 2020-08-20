@@ -133,14 +133,14 @@ The original project provides a sample to show how to use interfaces.
 
 ##### sample.cs
 
-This sample mainly shows how to set camera's paramters like exporeture time.
+This sample mainly shows how to set camera's paramters like exposure time.
 
-First, we need to know the actual ip address of camera and set it, and then connect:
+First, we need to know the actual IP address of camera and set it, and then connect:
 
 ```c#
 CameraClient camera = new CameraClient();
-//camera ip should be modified to actual ip address
-//always set ip before do anything else
+//camera IP should be modified to actual IP address
+//always set IP before do anything else
 camera.connect("192.168.3.76");
 ```
 
