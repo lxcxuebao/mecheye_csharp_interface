@@ -34,16 +34,34 @@ namespace Mechmind_CameraAPI_Csharp
                 Cv2.ImWrite(save_path + "color.jpg", color);
                 Cv2.ImWrite(save_path + "depth.png", depth);
             }
-
+            double[,] rel = camera.captureRGBCloud();//point cloud data in xyzrgb3
+            Console.WriteLine("Cloud has " + rel.Length.ToString() + " points");
             //set some parameters of camera, you can refer to parameters' names in Mech_eye
             Console.WriteLine(camera.setParameter("camera2DExpTime", 15));
             Console.WriteLine(camera.getParameter("camera2DExpTime"));
+            //The following is all parameters you can set.
+            Console.WriteLine(camera.setParameter("period", 45));
+            Console.WriteLine(camera.setParameter("isNanoType", 1));
+            Console.WriteLine(camera.setParameter("lightPower", 300));
+            Console.WriteLine(camera.setParameter("syncExposure", 0));
+            Console.WriteLine(camera.setParameter("exposure1", 0.3));
+            Console.WriteLine(camera.setParameter("exposure2", 6));
+            Console.WriteLine(camera.setParameter("exposure3", 6));
+            Console.WriteLine(camera.setParameter("gain", 0));
+            Console.WriteLine(camera.setParameter("useBinning", 0));
+            Console.WriteLine(camera.setParameter("useColorHdr", 1));
             Console.WriteLine(camera.setParameter("camera2DExpTime", 20));
-            Console.WriteLine(camera.getParameter("camera2DExpTime"));
+            Console.WriteLine(camera.setParameter("expectedGrayValue", 120));
+            Console.WriteLine(camera.setParameter("sharpenFactor", 0));
+            Console.WriteLine(camera.setParameter("contrastThres", 10));
+            Console.WriteLine(camera.setParameter("strength", 5));
+            Console.WriteLine(camera.setParameter("useMedianBlur", 1));
+            Console.WriteLine(camera.setParameter("hasThinObject", 0));
+            Console.WriteLine(camera.setParameter("lowerLimit", 800));
+            Console.WriteLine(camera.setParameter("upperLimit", 1100));
 
             //get point cloud in a 2-dim array,each element is [x,y,z,b,g,r]
-            double[,] rel = camera.captureRGBCloud();//point cloud data in xyzrgb3
-            Console.WriteLine("Cloud has " + rel.Length.ToString() + " points"); 
+            
         }
         
     }
