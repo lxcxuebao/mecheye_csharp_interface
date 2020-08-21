@@ -37,11 +37,11 @@ namespace Mechmind_CameraAPI_Csharp
             double[,] rel = camera.captureRGBCloud();//point cloud data in xyzrgb3
             Console.WriteLine("Cloud has " + rel.Length.ToString() + " points");
             //set some parameters of camera, you can refer to parameters' names in Mech_eye
-            Console.WriteLine(camera.setParameter("camera2DExpTime", 15));
+            Console.WriteLine(camera.setParameter("camera2DExpTime", 40));
             Console.WriteLine(camera.getParameter("camera2DExpTime"));
             //The following is all parameters you can set.
-            Console.WriteLine(camera.setParameter("period", 45));
-            Console.WriteLine(camera.setParameter("isNanoType", 1));
+            Console.WriteLine(camera.setParameter("period", 20));
+            Console.WriteLine(camera.setParameter("isNanoType", 0));
             Console.WriteLine(camera.setParameter("lightPower", 300));
             Console.WriteLine(camera.setParameter("syncExposure", 0));
             Console.WriteLine(camera.setParameter("exposure1", 0.3));
@@ -49,8 +49,8 @@ namespace Mechmind_CameraAPI_Csharp
             Console.WriteLine(camera.setParameter("exposure3", 6));
             Console.WriteLine(camera.setParameter("gain", 0));
             Console.WriteLine(camera.setParameter("useBinning", 0));
-            Console.WriteLine(camera.setParameter("useColorHdr", 1));
-            Console.WriteLine(camera.setParameter("camera2DExpTime", 20));
+            Console.WriteLine(camera.setParameter("useColorHdr", 0));
+            Console.WriteLine(camera.setParameter("camera2DExpTime", 40));
             Console.WriteLine(camera.setParameter("expectedGrayValue", 120));
             Console.WriteLine(camera.setParameter("sharpenFactor", 0));
             Console.WriteLine(camera.setParameter("contrastThres", 10));
