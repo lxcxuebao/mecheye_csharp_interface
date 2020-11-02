@@ -40,7 +40,6 @@ namespace Mechmind_CameraAPI_Csharp
         }
         public byte[] sendReq(string request)
         {
-            Mmind.Response rel;
             try
             {
                 reqbuf = System.Text.Encoding.Default.GetBytes(request); ;
