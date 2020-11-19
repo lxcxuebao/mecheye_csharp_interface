@@ -3,6 +3,8 @@
 
 This is official C# interfaces for Mech-Eye cameras. 
 
+If you are using Mech-Eye cameras with firmware version older than 1.0.0, please switch to Branch 0.4.0.
+
 ## Features
 
 By using interfaces , you can easily control your mech_eye cameras in .Net programs. The features of interfaces are as follows:
